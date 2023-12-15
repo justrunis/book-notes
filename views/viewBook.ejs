@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="text-center">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><%= book.name %></h5>
+            <% if (book.cover_image) { %>
+                <img src="<%= book.cover_image %>" alt="<%= book.name %> cover image">
+            <% } else { %>
+                <img height="200" width="200" src="/assets/book.png" alt="Default book cover image">
+            <% } %>
+            <p class="card-text">Author: <%= book.author %></p>
+            <p class="card-text">Rating: 
+                <% let rating = book.rating; %>
+                <% for (let i = 0; i < Math.floor(rating); i++) { %>
+                    <span class="star">&#9733;</span>
+                <% } %>
+                <% if (rating % 1 !== 0) { %>
+                    <span class="star">&#9733;</span>
+                <% } %>
+            </p>
+            <p class="card-text">ISBN: <%= book.isbn %></p>
+            <p class="card-text">Publication Date: <%= book.publication_date.toISOString().split('T')[0] %></p>
+            <p class="card-text">Genre: <%= book.genre %></p>
+            <p class="card-text">Description: <%= book.description %></p>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs'); -%>
